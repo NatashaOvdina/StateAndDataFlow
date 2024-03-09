@@ -11,6 +11,8 @@ struct ContentView: View {
     @EnvironmentObject private var contentViewVM: ContentViewViewModel
     @EnvironmentObject private var loginViewVM: LoginViewViewModel
     
+    private let storageManager = StorageManager.shared
+    
     var body: some View {
         VStack {
             Text("Hi, \(loginViewVM.loginDetails.name)!")
@@ -23,10 +25,21 @@ struct ContentView: View {
             Spacer()
             
             VStack { }
-            ButtonView(contentViewVM: contentViewVM)
+            ButtonView(text: contentViewVM.buttonTitle, color: .red) {
+                contentViewVM.startTimer()
+            }
             
             Spacer()
         }
+        ButtonView(text: "Log out", color: .blue) {
+            
+        }
+    }
+    
+    private func logOut() {
+        loginViewVM.loginDetails.isLoggedIn.toggle()
+        loginViewVM.loginDetails.name = ""
+        storageManager.deleteUserDetails()
     }
 }
 
@@ -36,23 +49,3 @@ struct ContentView: View {
         .environmentObject(LoginViewViewModel())
 }
 
-struct ButtonView: View {
-    @ObservedObject var contentViewVM: ContentViewViewModel
-    
-    var body: some View {
-        Button(action: contentViewVM.startTimer) {
-            Text(contentViewVM.buttonTitle)
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundStyle(.white)
-        }
-        .frame(width: 200, height: 60)
-        .background(.red)
-        .clipShape(.rect(cornerRadius: 20))
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(.black, lineWidth: 4)
-        )
-        
-    }
-}

@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import Combine
+import Observation
 
 final class ContentViewViewModel: ObservableObject {
-    let objectWillChange = ObservableObjectPublisher()
     var counter = 3
     var buttonTitle = "Start"
     

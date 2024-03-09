@@ -30,15 +30,13 @@ struct LoginView: View {
                 Label("OK", systemImage: "checkmark.circle")
                     .disabled(loginViewVM.loginDetails.name.count < 3)
             }
-            .onAppear(perform: {
-                storageManager.saveUserDetails(user: loginViewVM.loginDetails)
-            })
         }
     }
     
     private func login() {
         if loginViewVM.loginDetails.name.count >= 3  {
             loginViewVM.loginDetails.isLoggedIn.toggle()
+            storageManager.saveUserDetails(user: loginViewVM.loginDetails)
         }
     }
     
