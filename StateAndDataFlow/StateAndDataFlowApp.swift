@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct StateAndDataFlowApp: App {
-    @StateObject private var contentViewVM = ContentViewViewModel()
+    private var contentViewVM = ContentViewViewModel()
     @StateObject private var loginViewVM = LoginViewViewModel()
     
     private let storageManager = StorageManager.shared
@@ -22,7 +22,7 @@ struct StateAndDataFlowApp: App {
                     loginViewVM.loginDetails = user
                 }
         }
-        .environmentObject(contentViewVM)
+        .environment(contentViewVM)
         .environmentObject(loginViewVM)
     }
         

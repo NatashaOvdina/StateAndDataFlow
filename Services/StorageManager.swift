@@ -22,8 +22,8 @@ final class StorageManager {
     
     func loadUserDetails() -> User? {
         guard let data = userDetails else { return nil}
-        guard let decoderedDetails = try? JSONDecoder().decode(User.self, from: data) else { return nil}
-        return decoderedDetails
+        guard let decodeDetails = try? JSONDecoder().decode(User.self, from: data) else { return nil}
+        return decodeDetails
     }
     
     func deleteUserDetails() {
