@@ -11,4 +11,5 @@ final class LoginViewViewModel: ObservableObject {
 
     @Published var loginDetails = User(name: "", isLoggedIn: false)
     
+
 }

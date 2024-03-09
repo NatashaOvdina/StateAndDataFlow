@@ -31,7 +31,7 @@ struct LoginView: View {
                     .disabled(loginViewVM.loginDetails.name.count < 3)
             }
             .onAppear(perform: {
-                storageManager.save(name: loginViewVM.loginDetails.name)
+                storageManager.saveUserDetails(user: loginViewVM.loginDetails)
             })
         }
     }

@@ -11,21 +11,22 @@ import SwiftUI
 final class StorageManager {
     static let shared = StorageManager()
     
-    @AppStorage("username") var username = ""
+    @AppStorage("userDetails") var userDetails: Data?
    
     private init() {}
     
-    func save(name: String) {
-       username = name
-        print("saved")
+    func saveUserDetails(user: User) {
+        guard let data = try? JSONEncoder().encode(user) else { return }
+        userDetails = data
     }
     
-    func getSavedName() -> String {
-        return username
+    func loadUserDetails() -> User? {
+        guard let data = userDetails else { return User(name: "", isLoggedIn: false)}
+        guard let decoderedDetails = try? JSONDecoder().decode(User.self, from: data) else { return User(name: "", isLoggedIn: false)}
+        return decoderedDetails
     }
     
-    func deleteName() {
-        username = ""
+    func deleteUserDetails() {
+        userDetails = nil
     }
-    
 }

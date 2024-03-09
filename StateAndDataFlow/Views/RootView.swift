@@ -13,6 +13,7 @@ struct RootView: View {
     var body: some View {
         if loginViewVM.loginDetails.isLoggedIn {
             ContentView()
+            
         } else {
             LoginView()
         }

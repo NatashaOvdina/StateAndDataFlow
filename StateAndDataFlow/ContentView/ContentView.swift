@@ -11,11 +11,9 @@ struct ContentView: View {
     @EnvironmentObject private var contentViewVM: ContentViewViewModel
     @EnvironmentObject private var loginViewVM: LoginViewViewModel
     
-    private let storageManager = StorageManager.shared
-    
     var body: some View {
         VStack {
-            Text("Hi, \(storageManager.getSavedName())!")
+            Text("Hi, \(loginViewVM.loginDetails.name)!")
                 .padding(.top, 100)
                 .font(.largeTitle)
             Text(contentViewVM.counter.formatted())
