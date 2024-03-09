@@ -20,6 +20,10 @@ final class StorageManager {
         print("saved")
     }
     
+    func getSavedName() -> String {
+        return username
+    }
+    
     func deleteName() {
         username = ""
     }
