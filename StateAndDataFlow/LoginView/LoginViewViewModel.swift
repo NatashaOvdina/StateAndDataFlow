@@ -8,8 +8,6 @@
 import Foundation
 
 final class LoginViewViewModel: ObservableObject {
-
-    @Published var loginDetails = User(name: "", isLoggedIn: false)
     
-
+    @Published var loginDetails = User(name: "", isLoggedIn: false)
 }

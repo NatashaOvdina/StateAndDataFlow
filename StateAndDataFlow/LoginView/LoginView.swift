@@ -28,8 +28,8 @@ struct LoginView: View {
             
             Button(action: login) {
                 Label("OK", systemImage: "checkmark.circle")
-                    .disabled(loginViewVM.loginDetails.name.count < 3)
             }
+            .disabled(loginViewVM.loginDetails.name.count < 3)
         }
     }
     
