@@ -24,15 +24,16 @@ struct ContentView: View {
             
             Spacer()
             
-            VStack { }
             ButtonView(text: contentViewVM.buttonTitle, color: .red) {
                 contentViewVM.startTimer()
             }
             
             Spacer()
-        }
-        ButtonView(text: "Log out", color: .blue) {
             
+            ButtonView(text: "Log out", color: .blue) {
+                logOut()
+            }
+            .padding(.bottom, 40)
         }
     }
     

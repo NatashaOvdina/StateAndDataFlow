@@ -9,10 +9,10 @@ import Foundation
 import SwiftUI
 
 final class StorageManager {
+    @AppStorage("userDetails") var userDetails: Data?
+    
     static let shared = StorageManager()
     
-    @AppStorage("userDetails") var userDetails: Data?
-   
     private init() {}
     
     func saveUserDetails(user: User) {
