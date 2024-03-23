@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 final class StorageManager {
-    @AppStorage("userDetails") var userDetails: Data?
+    @AppStorage("userDetails") private var userDetails: Data?
     
     static let shared = StorageManager()
     
@@ -25,6 +25,12 @@ final class StorageManager {
         guard let decodeDetails = try? JSONDecoder().decode(User.self, from: data) else { return nil}
         return decodeDetails
     }
+    
+    // func loadUserDetails() -> User {
+    // guard let userDetails else { return User() }
+    // let user = try? JSONDecoder().decode(User.self, from: userDetails)
+    // return user ?? User()
+    
     
     func deleteUserDetails() {
         userDetails = nil

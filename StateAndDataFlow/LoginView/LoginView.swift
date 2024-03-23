@@ -17,26 +17,19 @@ struct LoginView: View {
             HStack {
                 TextField("Enter your name", text: $loginViewVM.loginDetails.name)
                     .padding(.leading, 30)
-                Text(loginViewVM.loginDetails.name.count.formatted())
+                Text(loginViewVM.userNameCharCount)
                     .foregroundStyle(
-                        loginViewVM.loginDetails.name.count < 3 ? .red : .green
+                        loginViewVM.nameIsValid ? .green : .red
                     )
                     .multilineTextAlignment(.trailing)
                     .padding(.trailing, 30)
             }
             .multilineTextAlignment(.center)
             
-            Button(action: login) {
+            Button(action: loginViewVM.login) {
                 Label("OK", systemImage: "checkmark.circle")
             }
-            .disabled(loginViewVM.loginDetails.name.count < 3)
-        }
-    }
-    
-    private func login() {
-        if loginViewVM.loginDetails.name.count >= 3  {
-            loginViewVM.loginDetails.isLoggedIn.toggle()
-            storageManager.saveUserDetails(user: loginViewVM.loginDetails)
+            .disabled(!loginViewVM.nameIsValid)
         }
     }
     

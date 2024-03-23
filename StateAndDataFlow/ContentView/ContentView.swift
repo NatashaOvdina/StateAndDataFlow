@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject private var loginViewVM: LoginViewViewModel
-    @Environment(ContentViewViewModel.self) private var contentViewVM: ContentViewViewModel
+    private let contentViewVM = ContentViewViewModel()
     
     private let storageManager = StorageManager.shared
     
@@ -24,29 +24,26 @@ struct ContentView: View {
             
             Spacer()
             
-            ButtonView(text: contentViewVM.buttonTitle, color: .red) {
-                contentViewVM.startTimer()
-            }
+            ButtonView(
+                text: contentViewVM.buttonTitle,
+                color: .red,
+                action: contentViewVM.startTimer
+            )
             
             Spacer()
             
-            ButtonView(text: "Log out", color: .blue) {
-                logOut()
-            }
-            .padding(.bottom, 40)
+            ButtonView(
+                text: "Log out",
+                color: .blue,
+                action: loginViewVM.logout
+            )
         }
-    }
-    
-    private func logOut() {
-        loginViewVM.loginDetails.isLoggedIn.toggle()
-        loginViewVM.loginDetails.name = ""
-        storageManager.deleteUserDetails()
+        .padding(.bottom, 40)
     }
 }
 
 #Preview {
     ContentView()
-        .environment(ContentViewViewModel())
         .environmentObject(LoginViewViewModel())
 }
 
